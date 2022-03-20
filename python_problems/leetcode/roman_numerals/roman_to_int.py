@@ -37,6 +37,7 @@ class RomanToInt:
 
         return num_list
 
+    # TODO This is wrong!! 
     def _add_signs(self, num_list: list[int]) -> list[int]:
         """
         Multiply the all numbers in a list before the max by -1
