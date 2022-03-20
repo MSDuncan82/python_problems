@@ -1,29 +1,32 @@
 """
 An overly robust OOP solution to 13. Roman to Integer Leetcode problem with tests
 """
+
+
 class BadRomanNumeralError:
     """Raised when there is a problem with an input roman numeral"""
 
+
 class Solution:
     roman_numeral_lookup = {
-        'I': 1,
-        'V': 5,
-        'X': 10,
-        'L': 50,
-        'C': 100,
-        'D': 500,
-        'M': 1000
+        "I": 1,
+        "V": 5,
+        "X": 10,
+        "L": 50,
+        "C": 100,
+        "D": 500,
+        "M": 1000,
     }
-    
+
     def romanToInt(self, roman_string: str) -> int:
         """Convert roman numeral to integer"""
-        num_list = self._roman_to_num_list(roman_string) #  n
+        num_list = self._roman_to_num_list(roman_string)  #  n
         groups = self._get_groups(num_list)  # 2n
         signed_nums = []
         for group in groups:
             signed_nums += self._add_signs_left_of_max(group)
         total = sum(signed_nums)
-        
+
         return total
 
     def _single_roman_numeral_to_num(self, roman_numeral: str) -> int:
@@ -31,9 +34,11 @@ class Solution:
         num = self.roman_numeral_lookup.get(roman_numeral)
 
         if num is None:
-            raise BadRomanNumeralError(f"""
+            raise BadRomanNumeralError(
+                f"""
             The roman numeral '{roman_numeral}' was not found. Please use one of: {list(self.roman_numeral_lookup.keys())}
-            """)
+            """
+            )
 
         return num
 
@@ -52,15 +57,15 @@ class Solution:
         for i in range(len(num_list) - 1):
             if num_list[i + 1] < num_list[i]:
                 group_dividers.append(i)
-        
+
         # Index num_list using group_dividers to get groups
         groups = []
         start_of_group = 0
         for gd in group_dividers:
-            g = num_list[start_of_group: gd + 1]
+            g = num_list[start_of_group : gd + 1]
             groups.append(g)
             start_of_group = gd + 1
-        
+
         # Ensure the last group is captured
         last_group = num_list[start_of_group:]
         groups.append(last_group)
@@ -70,7 +75,7 @@ class Solution:
     def _add_signs_left_of_max(self, num_list: list[int]) -> list[int]:
         """
         Multiply the all numbers in a list before the max by -1
-        
+
         [1, 1, 5, 5, 1, 1] -> [-1, -1, 5, 5, 1, 1]
         """
         # Find index of max
