@@ -15,7 +15,10 @@ class RomanToInt:
     def romanToInt(self, roman_string: str) -> int:
         """Convert roman numeral to integer"""
         num_list = self._roman_to_num_list(roman_string)
-        signed_nums = self._add_signs(num_list)
+        groups = self._get_groups(num_list)
+        signed_nums = []
+        for group in groups:
+            signed_nums += self._add_signs_left_of_max(group)
         total = sum(signed_nums)
         
         return total
@@ -37,8 +40,31 @@ class RomanToInt:
 
         return num_list
 
-    # TODO This is wrong!! 
-    def _add_signs(self, num_list: list[int]) -> list[int]:
+    def _get_groups(self, num_list: list[int]) -> list[list[int]]:
+        """
+        Divide list of numbers into groups marked by points of the list decreasing
+        """
+        # Each time a the list descends then the previous element marks the groups end
+        group_dividers = []
+        for i in range(len(num_list) - 1):
+            if num_list[i + 1] < num_list[i]:
+                group_dividers.append(i)
+        
+        # Index num_list using group_dividers to get groups
+        groups = []
+        start_of_group = 0
+        for gd in group_dividers:
+            g = num_list[start_of_group: gd + 1]
+            groups.append(g)
+            start_of_group = gd + 1
+        
+        # Ensure the last group is captured
+        last_group = num_list[start_of_group:]
+        groups.append(last_group)
+
+        return groups
+
+    def _add_signs_left_of_max(self, num_list: list[int]) -> list[int]:
         """
         Multiply the all numbers in a list before the max by -1
         

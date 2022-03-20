@@ -16,12 +16,21 @@ def test_roman_to_num_list(in_r_string, expect_n_list):
 def test_add_signs(in_num_list, out_num_list):
     roman_converter = RomanToInt()
 
-    n_list = roman_converter._add_signs(in_num_list)
+    n_list = roman_converter._add_signs_left_of_max(in_num_list)
 
     assert out_num_list == n_list
 
 
-@pytest.mark.parametrize("in_roman,out_int", [("I", 1), ("IV", 4), ('IVXLCDM', 334)]) 
+@pytest.mark.parametrize("in_num_list,out_groups", [([1000, 100, 1000, 10, 100, 1, 5], [[1000], [100, 1000], [10, 100], [1, 5]])])
+def test_get_groups(in_num_list, out_groups):
+    roman_converter = RomanToInt()
+
+    groups = roman_converter._get_groups(in_num_list)
+
+    assert out_groups == groups
+
+
+@pytest.mark.parametrize("in_roman,out_int", [("I", 1), ("IV", 4), ('IVXLCDM', 334), ("MCMXCIV", 1994)]) 
 def test_romantoint(in_roman, out_int):
     roman_converter = RomanToInt()
 
