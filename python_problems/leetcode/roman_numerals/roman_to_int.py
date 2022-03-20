@@ -1,4 +1,7 @@
 
+from filelock import sys
+
+
 class BadRomanNumeralError:
     """Raised when there is a problem with an input roman numeral"""
 
@@ -38,7 +41,7 @@ class RomanToInt:
 
         return num_list
 
-    def _add_signs(num_list: list[int]) -> list[int]:
+    def _add_signs(self, num_list: list[int]) -> list[int]:
         """
         Multiply the all numbers in a list before the max by -1
         
@@ -51,3 +54,7 @@ class RomanToInt:
         # Multiply all numbers before max by -1
         signed_list = [n * -1 if i < max_idx else n for i, n in enumerate(num_list)]
         return signed_list
+
+if __name__ == '__main__':
+    print(__file__)    
+    print(sys.path)
