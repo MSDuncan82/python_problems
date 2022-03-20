@@ -25,7 +25,7 @@ def test_add_signs(in_num_list, out_num_list):
 def test_romantoint(in_roman, out_int):
     roman_converter = RomanToInt()
 
-    n_list = roman_converter._add_signs(in_num_list)
+    n_list = roman_converter.romanToInt(in_roman)
 
-    assert out_num_list == n_list
+    assert  out_int == n_list
 

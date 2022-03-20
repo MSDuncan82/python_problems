@@ -3,7 +3,6 @@ name = "python_problems"
 version = "0.1.0"
 description = "Exercise problems"
 authors = ["Michael Duncan <msduncan82@gmail.com>"]
-packages =  [ { include = "python_problems" } ]
 
 [tool.poetry.dependencies]
 python = "^3.9"
