@@ -1,7 +1,10 @@
+"""
+An overly robust OOP solution to 13. Roman to Integer Leetcode problem with tests
+"""
 class BadRomanNumeralError:
     """Raised when there is a problem with an input roman numeral"""
 
-class RomanToInt:
+class Solution:
     roman_numeral_lookup = {
         'I': 1,
         'V': 5,
@@ -14,8 +17,8 @@ class RomanToInt:
     
     def romanToInt(self, roman_string: str) -> int:
         """Convert roman numeral to integer"""
-        num_list = self._roman_to_num_list(roman_string)
-        groups = self._get_groups(num_list)
+        num_list = self._roman_to_num_list(roman_string) #  n
+        groups = self._get_groups(num_list)  # 2n
         signed_nums = []
         for group in groups:
             signed_nums += self._add_signs_left_of_max(group)
