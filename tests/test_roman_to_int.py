@@ -21,7 +21,7 @@ def test_add_signs(in_num_list, out_num_list):
     assert out_num_list == n_list
 
 
-@pytest.mark.parametrize("in_roman,out_int", [("I", 1), ("IV", 4), ('IVXLCDM', [1666])]) 
+@pytest.mark.parametrize("in_roman,out_int", [("I", 1), ("IV", 4), ('IVXLCDM', 334)]) 
 def test_romantoint(in_roman, out_int):
     roman_converter = RomanToInt()
 
