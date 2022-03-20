@@ -6,6 +6,16 @@
 2. Find the groups of roman numerals that represent the different deciles (1s, 10s, 100s, etc.)
 3. Calculate the sum of each group and and sum the groups
 
+## Reflection
+
+I made the problem more complicated than it needed to be! I didn't realize that there can only be one copy of a the same roman numeral before a larger one to subtract that number. For example:
+
+Valid: IX = 9
+
+Invalid IIX != 8 (VIII = 8)
+
+Using this constraint would have made the solution a lot simpler.
+
 ## Goal
 
 Build the solution in a class structure and write tests for each method.
